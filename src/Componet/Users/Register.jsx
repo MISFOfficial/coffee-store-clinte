@@ -1,16 +1,31 @@
-import React from 'react';
+import React, { use } from 'react';
 import { FaEye } from 'react-icons/fa';
 import { Link } from 'react-router';
+import { AuthContext } from '../../AuthContex/AuthContext';
 
 const Register = () => {
+
+    const {createUser}=use(AuthContext)
 
     const handleSignUp=(e)=>{
         e.preventDefault()
         const form=e.target
         const formData=new FormData(form)
         const email =formData.get('email')
-        console.log(email)
+        const password =formData.get('password')
+
+        // console.log(email, password)
+
+        createUser(email, password)
+        .then((result)=>{
+            console.log(result)
+        })
+        .catch((error)=>{
+            console.log(error)
+        })
     }
+
+
     return (
         <div className='addCoffeeBg'>
             <div className="flex h-auto   justify-center items-center px-6 py-12 lg:px-8">
@@ -131,10 +146,9 @@ const Register = () => {
 
                     <p className="mt-10 text-center text-sm/6 text-gray-500">
                         have an account?{' '}
-                        <Link to='/signin'><a className="font-semibold text-indigo-600 hover:text-indigo-500">
+                        <Link to='/signin'><span className="font-semibold text-indigo-600 hover:text-indigo-500">
                             Sing in now
-                        </a></Link>
-
+                        </span></Link>
                     </p>
                 </div>
             </div>
