@@ -3,12 +3,20 @@ import { FaEye } from 'react-icons/fa';
 import { Link } from 'react-router';
 
 const Register = () => {
+
+    const handleSignUp=(e)=>{
+        e.preventDefault()
+        const form=e.target
+        const formData=new FormData(form)
+        const email =formData.get('email')
+        console.log(email)
+    }
     return (
         <div className='addCoffeeBg'>
-            <div className="flex h-screen   justify-center items-center px-6 py-12 lg:px-8">
+            <div className="flex h-auto   justify-center items-center px-6 py-12 lg:px-8">
                 <div className="mt-10 w-[500px]  bg-[#ECEAE3] px-[20px] py-[40px] md:px-[40px] md:py-[30px] rounded-[20px]">
                     <h1 className='text-2xl md:text-4xl font-bold text-center'>Register Now!</h1>
-                    <form action="#" method="POST" className="space-y-6 mt-15">
+                    <form onSubmit={handleSignUp} method="POST" className="space-y-6 mt-15">
                         {/* name */}
                         <div>
                             <label htmlFor="Name" className="block text-sm/6 font-medium text-gray-900">
@@ -116,7 +124,7 @@ const Register = () => {
                                 type="submit"
                                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                             >
-                                Sign in
+                                Register
                             </button>
                         </div>
                     </form>
